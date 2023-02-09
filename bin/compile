@@ -81,4 +81,18 @@ echo "[PHP]" >> /app/.heroku/php/etc/php/conf.d/datadog-php-custom.ini
 echo "extension=/app/.apt/opt/datadog-php/extensions/ddtrace-$DDTRACE_EXT_PHP_API.so" >> /app/.heroku/php/etc/php/conf.d/datadog-php-custom.ini
 echo "ddtrace.request_init_hook=/app/.apt/opt/datadog-php/dd-trace-sources/bridge/dd_wrap_autoloader.php" >> /app/.heroku/php/etc/php/conf.d/datadog-php-custom.ini
 
+# Install datadog library
+
+DDTRACE_LIBRARY_URL="https://github.com/DataDog/dd-trace-php/releases/download/0.84.0/dd-library-php-"$DDTRACE_EXT_RELEASE"-x86_64-linux-gnu.tar.gz"
+
+topic "Downloading library package from $DDTRACE_LIBRARY_URL"
+
+LIBRARY_FILE=$APT_CACHE_DIR/archives/dd-library.tar.gz
+
+curl --silent --show-error --fail --location --output $LIBRARY_FILE $DDTRACE_LIBRARY_URL 2>&1 | indent
+
+tar -zxvf $LIBRARY_FILE --directory=/app/.apt/opt/dd-library-php
+
+echo "extension=/app/.apt/opt/dd-library-php/profiling/ext/$DDTRACE_EXT_PHP_API/datadog-profiling.so" >> /app/.heroku/php/etc/php/conf.d/datadog-php-custom.ini
+
 echo "Done" | indent
