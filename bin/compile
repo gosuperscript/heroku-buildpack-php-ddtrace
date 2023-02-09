@@ -83,7 +83,7 @@ echo "ddtrace.request_init_hook=/app/.apt/opt/datadog-php/dd-trace-sources/bridg
 
 # Install datadog library
 
-DDTRACE_LIBRARY_URL="https://github.com/DataDog/dd-trace-php/releases/download/0.84.0/dd-library-php-"$DDTRACE_EXT_RELEASE"-x86_64-linux-gnu.tar.gz"
+DDTRACE_LIBRARY_URL="https://github.com/DataDog/dd-trace-php/releases/download/"$DDTRACE_EXT_RELEASE"/dd-library-php-"$DDTRACE_EXT_RELEASE"-x86_64-linux-gnu.tar.gz"
 
 topic "Downloading library package from $DDTRACE_LIBRARY_URL"
 
