@@ -91,7 +91,7 @@ LIBRARY_FILE=$APT_CACHE_DIR/archives/dd-library.tar.gz
 
 curl --silent --show-error --fail --location --output $LIBRARY_FILE $DDTRACE_LIBRARY_URL 2>&1 | indent
 
-tar -zxvf $LIBRARY_FILE --directory=/app/.apt/opt/dd-library-php
+tar -zxvf $LIBRARY_FILE --directory=/app/.apt/opt
 
 echo "extension=/app/.apt/opt/dd-library-php/profiling/ext/$DDTRACE_EXT_PHP_API/datadog-profiling.so" >> /app/.heroku/php/etc/php/conf.d/datadog-php-custom.ini
 
